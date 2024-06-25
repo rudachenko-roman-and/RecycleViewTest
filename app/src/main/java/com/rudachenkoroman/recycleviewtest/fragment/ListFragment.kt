@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.rudachenkoroman.recycleviewtest.R
 import com.rudachenkoroman.recycleviewtest.adapter.ContentAdapter
 import com.rudachenkoroman.recycleviewtest.data.ContentModel
+import com.rudachenkoroman.recycleviewtest.data.NewsName
 import com.rudachenkoroman.recycleviewtest.databinding.FragmentListBinding
 
 class ListFragment : Fragment(R.layout.fragment_list) {
@@ -29,8 +30,10 @@ class ListFragment : Fragment(R.layout.fragment_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.recyclerView.adapter = contentAdapter
-        contentAdapter.submitList(List(100) {
-            ContentModel(it , "Name News $it ","Detail News $it")
+        contentAdapter.submitList(List(NewsName.entries.size) {
+            val name = NewsName.entries[it].nameNews
+            val detail = NewsName.entries[it].newsDetail
+            ContentModel(it ,name,detail)
         })
 
     }
